@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio Ihsan Nurfalah - Siswa SMKN 1 Kawali jurusan PPLG dengan minat dalam pengembangan web dan desain UI/UX">
+  <meta name="keywords" content="portfolio, Ihsan Nurfalah, web developer, PPLG, SMKN 1 Kawali">
+  <meta name="author" content="Ihsan Nurfalah">
+  <title>Portfolio - Ihsan Nurfalah</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Menggunakan CDN Font Awesome terbaru -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://kit.fontawesome.com/a2e0f1f5f1.js" crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #f5f5f5;
+      overflow-x: hidden;
+    }
+
+    /* Skip to content link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: #00d4ff;
+      color: #121212;
+      padding: 8px;
+      z-index: 100;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(18, 18, 18, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 24px;
+      background: linear-gradient(90deg, #00d4ff, #9b59b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      margin-left: 28px;
+      font-weight: 500;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #00d4ff, #9b59b6);
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #00d4ff;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 8%;
+      background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #ffffff, #c9a2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .hero p {
+      font-size: 22px;
+      color: #bdbdbd;
+      margin-bottom: 35px;
+      max-width: 600px;
+    }
+
+    .hero a {
+      background: linear-gradient(90deg, #00d4ff, #9b59b6);
+      color: #fff;
+      padding: 14px 30px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.4s;
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    }
+
+    .hero a:hover {
+      background: linear-gradient(90deg, #9b59b6, #00d4ff);
+      box-shadow: 0 6px 20px rgba(155, 89, 182, 0.5);
+      transform: translateY(-3px);
+    }
+
+    /* Section */
+    section {
+      padding: 120px 8%;
+      background-color: #121212;
+    }
+
+    section:nth-of-type(even) {
+      background-color: #1e1e1e;
+    }
+
+    section h2 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      border-left: 6px solid #00d4ff;
+      padding-left: 15px;
+      position: relative;
+    }
+
+    section h2::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background: linear-gradient(to bottom, #00d4ff, #9b59b6);
+      border-radius: 2px;
+    }
+
+    section p {
+      color: #bdbdbd;
+      max-width: 750px;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    /* Tentang Saya */
+    #about {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 60px;
+    }
+
+    .about-img {
+      flex: 1 1 300px;
+      text-align: center;
+    }
+
+    .about-img img {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #00d4ff;
+      box-shadow: 0 0 35px rgba(0, 212, 255, 0.5);
+      transition: 0.5s ease;
+      animation: floating 4s ease-in-out infinite;
+    }
+
+    .about-img img:hover {
+      transform: scale(1.09);
+      box-shadow: 0 0 45px rgba(0, 212, 255, 0.8);
+    }
+
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* Education */
+    .education .edu-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 20px;
+      border-left: 5px solid #9b59b6;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .edu-item:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateX(8px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Skills - New Style */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .skill-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #00d4ff;
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    }
+
+    .skill-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, #00d4ff, #9b59b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .skill-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .skill-card p {
+      font-size: 14px;
+      color: #bdbdbd;
+      line-height: 1.6;
+    }
+
+    /* Projects */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 25px;
+    }
+
+    .project {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 25px;
+      transition: 0.3s;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+    }
+
+    .project h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .project p {
+      color: #bdbdbd;
+      font-size: 15px;
+    }
+
+    /* Kontak */
+    .contact {
+      text-align: center;
+      padding: 120px 8%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      align-self: flex-start;
+    }
+
+    .contact-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 35px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .contact-info {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 30px 40px;
+      border-radius: 18px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    .contact-info:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-info p {
+      font-size: 19px;
+      color: #bdbdbd;
+      margin: 15px 0;
+    }
+
+    .contact-info a {
+      color: #00d4ff;
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+      color: #9b59b6;
+    }
+
+    .social {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .social a {
+      width: 55px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 24px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .social a:hover {
+      background: linear-gradient(90deg, #00d4ff, #9b59b6);
+      transform: scale(1.2) rotate(5deg);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.7);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 15px;
+      color: #888;
+      background: rgba(255, 255, 255, 0.04);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 46px; }
+      .hero p { font-size: 20px; }
+      #about { flex-direction: column; text-align: center; }
+      .about-img img { width: 220px; height: 220px; }
+      section h2 { font-size: 28px; }
+    }
+    /* Tambahan Responsivitas */
+@media (max-width: 992px) {
+  header {
+    padding: 18px 6%;
+  }
+
+  nav a {
+    margin-left: 20px;
+    font-size: 15px;
+  }
+
+  .hero {
+    padding: 0 6%;
+  }
+
+  .hero h1 {
+    font-size: 48px;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 20px;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 6%;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  nav a {
+    margin: 0;
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .hero {
+    align-items: center;
+    text-align: center;
+    padding: 0 5%;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .hero p {
+    font-size: 17px;
+    max-width: 100%;
+  }
+
+  #about {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .about-img img {
+    width: 200px;
+    height: 200px;
+  }
+
+  section h2 {
+    font-size: 26px;
+    text-align: center;
+    border: none;
+    padding: 0;
+  }
+
+  section p {
+    font-size: 15px;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .skills-grid,
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  .contact {
+    padding: 90px 6%;
+  }
+
+  .contact-info p {
+    font-size: 16px;
+    word-wrap: break-word;
+  }
+
+  .social a {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 12px 5%;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  nav {
+    justify-content: center;
+    gap: 8px;
+  }
+
+  nav a {
+    font-size: 13px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .about-img img {
+    width: 160px;
+    height: 160px;
+  }
+
+  section {
+    padding: 80px 5%;
+  }
+
+  footer {
+    font-size: 13px;
+    padding: 15px;
+  }
+}
+/* === HAMBURGER MENU RESPONSIVE === */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu-toggle:hover {
+  color: #00d4ff;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: rgba(18, 18, 18, 0.98);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 10px 0;
+    position: absolute;
+    top: 70px;
+    left: 0;
+  }
+
+  nav a {
+    margin: 12px 0;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  nav.show {
+    display: flex;
+    animation: dropdownFade 0.3s ease;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  header {
+    flex-wrap: wrap;
+  }
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+  </style>
+<header role="banner">
+  <div class="logo">PORTFOLIO</div>
+  <button class="menu-toggle" aria-label="Toggle menu">
+    <i class="fas fa-bars"></i>
+  </button>
+  <nav role="navigation" aria-label="Menu navigasi utama">
+    <a href="#home" aria-current="page">Beranda</a>
+    <a href="#about">Tentang</a>
+    <a href="#education">Pendidikan</a>
+    <a href="#skills">Kemampuan</a>
+    <a href="#projects">Proyek</a>
+    <a href="#contact">Kontak</a>
+  </nav>
+</header>
+
+
+  <main id="main-content">
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title" data-aos="fade-right">Ihsan Nurfalah</h1>
+      <p data-aos="fade-up">Siswa SMKN 1 Kawali | XII PPLG 2</p>
+      <a href="#about" data-aos="fade-up" aria-label="Lihat informasi selengkapnya tentang Ihsan">Lihat Selengkapnya</a>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <div class="about-img" data-aos="fade-right">
+        <img src="fotodua.jpg" alt="Foto profil Ihsan Nurfalah">
+      </div>
+      <div class="about-text" data-aos="fade-left">
+        <h2 id="about-title">Tentang Saya</h2>
+        <p>Saya adalah siswa SMKN 1 Kawali jurusan PPLG dengan minat besar dalam pengembangan web, pemrograman, dan desain UI/UX.
+           Saya senang menciptakan tampilan modern dan interaktif untuk aplikasi web.</p>
+      </div>
+    </section>
+
+    <section id="education" aria-labelledby="education-title" data-aos="fade-up">
+      <h2 id="education-title">Pendidikan</h2>
+      <div class="education">
+        <article class="edu-item">
+          <h3>SMKN 1 Kawali</h3>
+          <p>Jurusan: Pengembangan Perangkat Lunak dan Gim (2023 - Sekarang)</p>
+        </article>
+        <article class="edu-item">
+          <h3>Mts Darul Fikri</h3>
+          <p>2020 - 2023</p>
+        </article>
+        <article class="edu-item">
+          <h3>Mi Pul Banjaransari</h3>
+          <p>2014 - 2020</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-title" data-aos="fade-up">
+      <h2 id="skills-title">Kemampuan</h2>
+      <div class="skills-grid">
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="skill-icon"><i class="fas fa-file-word"></i></div>
+          <h3>Microsoft Office</h3>
+          <p>Mahir menggunakan Word, Excel, dan PowerPoint untuk keperluan administrasi dan presentasi.</p>
+        </div>
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="skill-icon"><i class="fas fa-code"></i></div>
+          <h3>Pemrograman</h3>
+          <p>Menguasai dasar-dasar HTML & CSS untuk membangun tampilan website yang modern dan responsif.</p>
+        </div>
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="skill-icon"><i class="fas fa-keyboard"></i></div>
+          <h3>Mengetik</h3>
+          <p>Kemampuan mengetik cepat dan akurat untuk input data serta penyelesaian tugas administratif.</p>
+        </div>
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="skill-icon"><i class="fas fa-users"></i></div>
+          <h3>Kerja Sama Tim</h3>
+          <p>Mampu berkolaborasi secara efektif dalam tim untuk mencapai tujuan proyek bersama.</p>
+        </div>
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="skill-icon"><i class="fas fa-comments"></i></div>
+          <h3>Komunikasi</h3>
+          <p>Kemampuan menyampaikan ide dan informasi secara jelas, baik lisan maupun tulisan.</p>
+        </div>
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="skill-icon"><i class="fas fa-star"></i></div>
+          <h3>Kepribadian</h3>
+          <p>Pribadi yang kreatif, bertanggung jawab, dan selalu bersemangat untuk belajar hal baru.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title" data-aos="fade-left">
+      <h2 id="projects-title">Proyek</h2>
+      <div class="projects">
+        <article class="project">
+          <h3>Rental Motor System</h3>
+          <p>Sistem CRUD penyewaan motor dengan laporan & login admin.</p>
+        </article>
+        <article class="project">
+          <h3>Website Desa</h3>
+          <p>Website profil desa dengan galeri dan berita dinamis.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-title" data-aos="zoom-in">
+      <h2 id="contact-title">Kontak</h2>
+
+      <div class="contact-container">
+        <div class="contact-info">
+          <p><strong>Email:</strong> <a href="mailto:isannurfallah@gmail.com">isannurfallah@gmail.com</a></p>
+          <p><strong>Telepon:</strong> <span>088-222-326-231</span></p>
+        </div>
+
+        <div class="social" role="list" aria-label="Media sosial">
+          <a href="https://www.instagram.com/isannrflh?igsh=MTh2N2gyaDI1aXp5dQ=" target="_blank" rel="noopener noreferrer" title="Instagram" role="listitem">
+            <i class="fab fa-instagram" aria-hidden="true"></i>
+            <span class="sr-only">Instagram</span>
+          </a>
+          <a href="https://www.tiktok.com/@lsann_?_t=ZS-90ad6zXYxaC&_r=1" target="_blank" rel="noopener noreferrer" title="TikTok" role="listitem">
+            <i class="fab fa-tiktok" aria-hidden="true"></i>
+            <span class="sr-only">TikTok</span>
+          </a>
+          <a href="https://github.com/isannurfallah" target="_blank" rel="noopener noreferrer" title="GitHub" role="listitem">
+            <i class="fab fa-github" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <p>© 2025 Ihsan Nurfalah — Dibuat dengan </i></p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+
+  // Highlight link aktif saat scroll
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('nav a');
+  
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (pageYOffset >= sectionTop - 100) {
+        current = section.getAttribute('id');
+      }
+    });
+    
+    navLinks.forEach(link => {
+      link.removeAttribute('aria-current');
+      if (link.getAttribute('href').slice(1) === current) {
+        link.setAttribute('aria-current', 'page');
+      }
+    });
+  });
+
+  // Toggle dropdown menu di mobile
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('nav');
+
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('show');
+    const icon = menuToggle.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-times');
+  });
+
+  // Tutup menu saat klik link (hanya di mobile)
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        nav.classList.remove('show');
+        const icon = menuToggle.querySelector('i');
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-times');
+      }
+    });
+  });
+</script>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Tambahkan style menu toggle (ikon hamburger) */
+  .menu-toggle {
+    display: none;
+    font-size: 26px;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background: rgba(18, 18, 18, 0.95);
+      position: absolute;
+      top: 70px;
+      left: 0;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    nav.show {
+      display: flex;
+      animation: fadeInDown 0.4s ease;
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+
+    header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      margin: 12px 0;
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+</style>
+
+  </style>
+</body>
+</html>
