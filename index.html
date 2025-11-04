@@ -840,7 +840,313 @@
 
     nav.show {
       display: flex;
-      animation: fadeInDown 0.4s ease;
+      animation: fadeInDown 0.4s ease;<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio Ihsan Nurfalah - Lulusan SMKN 1 Kawali jurusan PPLG dengan minat dalam pengembangan web dan desain UI/UX">
+  <meta name="keywords" content="portfolio, Ihsan Nurfalah, web developer, PPLG, SMKN 1 Kawali">
+  <meta name="author" content="Ihsan Nurfalah">
+  <title>Portfolio - Ihsan Nurfalah</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://kit.fontawesome.com/a2e0f1f5f1.js" crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #f5f5f5;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(18, 18, 18, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 24px;
+      background: linear-gradient(90deg, #00d4ff, #9b59b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      margin-left: 28px;
+      font-weight: 500;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #00d4ff, #9b59b6);
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #00d4ff;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 8%;
+      background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #ffffff, #c9a2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .hero p {
+      font-size: 22px;
+      color: #bdbdbd;
+      margin-bottom: 35px;
+      max-width: 600px;
+    }
+
+    .hero a {
+      background: linear-gradient(90deg, #00d4ff, #9b59b6);
+      color: #fff;
+      padding: 14px 30px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.4s;
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    }
+
+    .hero a:hover {
+      background: linear-gradient(90deg, #9b59b6, #00d4ff);
+      box-shadow: 0 6px 20px rgba(155, 89, 182, 0.5);
+      transform: translateY(-3px);
+    }
+
+    section {
+      padding: 120px 8%;
+      background-color: #121212;
+    }
+
+    section:nth-of-type(even) {
+      background-color: #1e1e1e;
+    }
+
+    section h2 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      border-left: 6px solid #00d4ff;
+      padding-left: 15px;
+      position: relative;
+    }
+
+    section p {
+      color: #bdbdbd;
+      max-width: 750px;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    #about {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 60px;
+    }
+
+    .about-img {
+      flex: 1 1 300px;
+      text-align: center;
+    }
+
+    .about-img img {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #00d4ff;
+      box-shadow: 0 0 35px rgba(0, 212, 255, 0.5);
+      transition: 0.5s ease;
+      animation: floating 4s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .education .edu-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 20px;
+      border-left: 5px solid #9b59b6;
+      transition: 0.3s;
+    }
+
+    .edu-item:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateX(8px);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .skill-card {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #00d4ff;
+    }
+
+    .contact {
+      text-align: center;
+      padding: 120px 8%;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 15px;
+      color: #888;
+      background: rgba(255, 255, 255, 0.04);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* Responsif */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 46px; }
+      .hero p { font-size: 20px; }
+      #about { flex-direction: column; text-align: center; }
+      .about-img img { width: 220px; height: 220px; }
+      section h2 { font-size: 28px; }
+    }
+  </style>
+</head>
+
+<body>
+<header role="banner">
+  <div class="logo">PORTFOLIO</div>
+  <button class="menu-toggle" aria-label="Toggle menu">
+    <i class="fas fa-bars"></i>
+  </button>
+  <nav role="navigation" aria-label="Menu navigasi utama">
+    <a href="#home" aria-current="page">Beranda</a>
+    <a href="#about">Tentang</a>
+    <a href="#education">Pendidikan</a>
+    <a href="#skills">Kemampuan</a>
+    <a href="#projects">Proyek</a>
+    <a href="#contact">Kontak</a>
+  </nav>
+</header>
+
+<main id="main-content">
+  <section id="home" class="hero" aria-labelledby="hero-title">
+    <h1 id="hero-title" data-aos="fade-right">Ihsan Nurfalah</h1>
+    <p data-aos="fade-up">SMKN 1 Kawali | XII PPLG 2</p>
+    <a href="#about" data-aos="fade-up" aria-label="Lihat informasi selengkapnya tentang Ihsan">Lihat Selengkapnya</a>
+  </section>
+
+  <section id="about" aria-labelledby="about-title">
+    <div class="about-img" data-aos="fade-right">
+      <img src="fotodua.jpg" alt="Foto profil Ihsan Nurfalah">
+    </div>
+    <div class="about-text" data-aos="fade-left">
+      <h2 id="about-title">Tentang Saya</h2>
+      <p>Saya lulusan SMKN 1 Kawali jurusan PPLG dengan minat besar dalam pengembangan web, pemrograman, dan desain UI/UX.
+         Saya senang menciptakan tampilan modern dan interaktif untuk aplikasi web.</p>
+    </div>
+  </section>
+
+  <section id="education" aria-labelledby="education-title" data-aos="fade-up">
+    <h2 id="education-title">Pendidikan</h2>
+    <div class="education">
+      <article class="edu-item">
+        <h3>SMKN 1 Kawali</h3>
+        <p>Jurusan: Pengembangan Perangkat Lunak dan Gim (2023 - 2025)</p>
+      </article>
+      <article class="edu-item">
+        <h3>Mts Darul Fikri</h3>
+        <p>2020 - 2023</p>
+      </article>
+      <article class="edu-item">
+        <h3>Mi Pul Banjaransari</h3>
+        <p>2014 - 2020</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="contact-title" data-aos="zoom-in">
+    <h2 id="contact-title">Kontak</h2>
+    <p>Email: <a href="mailto:isannurfallah@gmail.com">isannurfallah@gmail.com</a></p>
+    <p>Telepon: 088-222-326-231</p>
+  </section>
+</main>
+
+<footer role="contentinfo">
+  <p>© 2025 Ihsan Nurfalah </p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+</script>
+</body>
+</html>
+
     }
 
     .menu-toggle {
@@ -865,3 +1171,4 @@
 </body>
 
 </html>
+
